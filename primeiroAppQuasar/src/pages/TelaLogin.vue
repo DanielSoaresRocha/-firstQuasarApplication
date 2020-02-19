@@ -34,7 +34,7 @@
               </div>
             </div>
             <div class="col-8 logo">
-              ok2
+              <canvas id="myChart"></canvas>
             </div>
         </div>
     </q-page>
@@ -52,6 +52,7 @@
     height: 100vh;
 }
 </style>
+
 <script>
 export default {
   name: 'TelaLogin',
