@@ -26,12 +26,22 @@
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label header class="text-grey-8">Essential Links</q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item-label header>Menu</q-item-label>
+        <q-item
+          v-for="item in menus"
+          :key="item.label"
+          @click="goTo(item.path)"
+          clickable
+          tag="a"
+        >
+          <q-item-section avatar>
+            <q-icon :name="item.icon" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{item.label}}</q-item-label>
+          </q-item-section>
+        </q-item>
+        <!-- </q-expansion-item> -->
       </q-list>
     </q-drawer>
 
@@ -42,56 +52,30 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink'
 
 export default {
   name: 'MainLayout',
 
-  components: {
-    EssentialLink
-  },
-
   data () {
     return {
       leftDrawerOpen: false,
-      essentialLinks: [
+      menus: [
         {
-          title: 'Docs',
-          caption: 'quasar.dev',
-          icon: 'school',
-          link: 'https://quasar.dev'
+          label: 'Home',
+          icon: 'home',
+          path: '/'
         },
         {
-          title: 'Github',
-          caption: 'github.com/quasarframework',
-          icon: 'code',
-          link: 'https://github.com/quasarframework'
-        },
-        {
-          title: 'Discord Chat Channel',
-          caption: 'chat.quasar.dev',
-          icon: 'chat',
-          link: 'https://chat.quasar.dev'
-        },
-        {
-          title: 'Forum',
-          caption: 'forum.quasar.dev',
-          icon: 'record_voice_over',
-          link: 'https://forum.quasar.dev'
-        },
-        {
-          title: 'Twitter',
-          caption: '@quasarframework',
-          icon: 'rss_feed',
-          link: 'https://twitter.quasar.dev'
-        },
-        {
-          title: 'Facebook',
-          caption: '@QuasarFramework',
-          icon: 'public',
-          link: 'https://facebook.quasar.dev'
+          label: 'Graficos',
+          icon: 'business',
+          path: '/grafico'
         }
       ]
+    }
+  },
+  methods: {
+    goTo (path) {
+      this.$router.push(path)
     }
   }
 }
